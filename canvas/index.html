@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Skrubs - Canvas</title>
+   </head>
+   <body>
+      <img
+src="http://www.nebeep.com/wp-content/uploads/2015/11/86720256_face_with_tears_of_joy_emoji_shirts-r9c052e2a1e6a4d00bc8bd83b4cf838cb_f0yqz_1024-910x511.jpg"
+      <br><canvas></canvas>
+      <p>
+   </body>
+</html>
+<style>
+body {
+   font-family: sans-serif;
+   color: lime;
+   background: purple;
+   margin-left: 3em;
+}
+
+img {
+  margin-left: -2em;
+  margin-bottom: -1em;
+  width:20%;
+}
+</style>
+<script>
+var canvas = 
+document.querySelector("canvas");
+canvas.width = 400;
+canvas.height = 100;
+var ctx = canvas.getContext("2d");
+ctx.font = "bold 30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Skrubs - Canvas",15,70);
+ctx.FillStyle = "red";
+ctx.fillText("Skrubs - Canvas",15,67);
+ctx.rect(10,10,350,90);
+ctx.stroke();
+</script>
