@@ -43,7 +43,7 @@ class Load {
     console.log("Loading...")
     this.load.image("bg",C.bg.file)
     this.load.spritesheet("dodgedolan",C.p.file,C.p.width,C.p.height,C.p.frames)
-    this.load.spritesheet("smiley",C.d.width,C.d.height,C.d.frames);
+    this.load.spritesheet("smiley",C.d.file,C.d.width,C.d.height,C.d.frames)
   }
   create() {
     console.log("Loaded")
