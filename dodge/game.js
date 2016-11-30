@@ -16,14 +16,16 @@ var C = {
     "height": 64,
     "frames": 2,
     "startx": 160,
-    "starty": 500
+    "starty": 500,
+    "speed": 5
   },
 "d": {
   "file":"assets/smiley.png",
   "width": 64,
   "height": 64,
   "startx": 160,
-  "starty": 32
+  "starty": -32,
+  "speed": 15
   }
 }
 
@@ -67,9 +69,28 @@ class Play {
      this.dodge.anchor.set(0.5,0.5);
      this.dodge.smoothed = false;
      this.dodge.scale.set(1);
-  }
-}
 
+     this.cursors = this.input.keyboard.createCursorKeys();
+  }
+  update(){
+    if (this.cursors.left.isDown){
+      this.player.x -= C.p.speed;
+    }
+    if (this.cursors.right.isDown) {
+      this.player.x += C.p.speed;
+    }
+   if (this.dodge.y > this.game.height){
+     this.dodge.y = C.d.starty;
+     let px = (C.d.width * this.dodge.scale.x) / 2;
+     let max = C.game.width - px
+     this.dodge.x = randInt(px,max);
+  }
+  this.dodge.y += C.d.speed;
+}
+  render(){
+    game.debug.text("x: " + this.dodge.x + ",y:" + this.dodge.y, 4, 16);
+    }
+}
 var game = new Phaser.Game(C.game.width,C.game.height);
 game.state.add("Boot",Boot);
 game.state.add("Load",Load);
@@ -78,4 +99,8 @@ game.state.start("Boot");
 
 function restart() {
   game.state.start("Boot");
+}
+
+function randInt(min,max){
+  return Math.floor(Math.random() * (max - min) + min);
 }
