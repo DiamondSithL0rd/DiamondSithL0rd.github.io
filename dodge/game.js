@@ -54,7 +54,7 @@ class Load {
 }
 
 class Play {
-   create(){
+  create(){
      console.log("Entered Play State ");
     
      this.bg = this.add.tileSprite(0,0,C.bg.width,C.bg.height,"bg");
@@ -85,11 +85,21 @@ class Play {
      let max = C.game.width - px
      this.dodge.x = randInt(px,max);
   }
+  if (checkCollision(this.player, this.dodge)) {
+    restart();
+  }
+  if (this.player.x > C.game.width) {
+   this.player.x = C.game.width;
+  }
+  else if (this.player.x < 0){
+    this.player.x = 0
+  }
   this.dodge.y += C.d.speed;
-}
+  }
   render(){
     game.debug.text("x: " + this.dodge.x + ",y:" + this.dodge.y, 4, 16);
-    }
+  }
+
 }
 var game = new Phaser.Game(C.game.width,C.game.height);
 game.state.add("Boot",Boot);
@@ -103,4 +113,12 @@ function restart() {
 
 function randInt(min,max){
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+function checkCollision(spriteA, spriteB) {
+
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+
+  return Phaser.Rectangle.intersects(boundsA, boundsB);
 }
